@@ -1,3 +1,3 @@
 export function Home() {
-    return <h1> Alvim</h1>;
+    return <h3>Alvim</h3>;
 }
