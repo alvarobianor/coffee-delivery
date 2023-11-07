@@ -16,9 +16,7 @@ export const LocationLabel = styled.button<PropsLocationLabel>`
 
     gap: 0.5rem;
 
-    font-size: 1em;
-    font-family: ${({ theme }) => theme.fonts.regular};
-    padding: 0.25em 0.5em;
+    padding: 0.75rem 1rem;
     border: 0;
-    border-radius: 8px;
+    border-radius: 4px;
 `;
