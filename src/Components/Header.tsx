@@ -5,38 +5,38 @@ import { MapPinLine } from '@phosphor-icons/react';
 import { Button } from '@components/Button';
 
 export function Header() {
-    return (
-        <HeaderContainer>
-            <img src={Logo} />
-            <InfosContainer>
-                <Button $background="brand-purple" $text="Choró, CE" />
-                <MapPinLine />
-            </InfosContainer>
-        </HeaderContainer>
-    );
+  return (
+    <HeaderContainer>
+      <img src={Logo} />
+      <InfosContainer>
+        <Button $background="brand-purple-dark" $text="Choró, CE" />
+        <MapPinLine />
+      </InfosContainer>
+    </HeaderContainer>
+  );
 }
 
 const HeaderContainer = styled.header`
-    display: flex;
-    height: 6.5rem;
-    flex-direction: row;
+  display: flex;
+  height: 6.5rem;
+  flex-direction: row;
 
-    align-items: center;
-    justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 
-    img {
-        height: 40px;
-        width: 84.95px;
-    }
+  img {
+    height: 40px;
+    width: 84.95px;
+  }
 
-    background-color: aquamarine;
+  background-color: aquamarine;
 `;
 
 const InfosContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
-    max-height: 2.5rem;
+  max-height: 2.5rem;
 `;
