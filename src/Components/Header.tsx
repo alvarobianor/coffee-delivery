@@ -9,7 +9,7 @@ export function Header() {
     <HeaderContainer>
       <img src={Logo} />
       <InfosContainer>
-        <Button $background="brand-purple-dark" $text="Choró, CE" />
+        <Button $background="brand-yellow" $text="Choró, CE" />
         <MapPinLine />
       </InfosContainer>
     </HeaderContainer>

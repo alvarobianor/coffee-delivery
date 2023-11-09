@@ -36,6 +36,7 @@ export function Button({ $text, ...rest }: Props) {
   );
 }
 
+// implements the type secondary and state using a base button to start then
 const ButtonComponent = styled.button<PropsStyled>`
   padding: 0.75rem 2.8rem;
   color: ${({ theme }) => theme.colors['base-white']};
