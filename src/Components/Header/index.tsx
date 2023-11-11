@@ -1,16 +1,16 @@
 import Logo from '@assets/Logo.svg';
 import styled from 'styled-components';
 
-import { MapPinLine } from '@phosphor-icons/react';
-import { Button } from '@components/Button';
+import { Airplane } from '@phosphor-icons/react';
+import { Location } from './Location';
 
 export function Header() {
   return (
     <HeaderContainer>
       <img src={Logo} />
       <InfosContainer>
-        <Button $background="brand-yellow" $text="Choró, CE" />
-        <MapPinLine />
+        <Location text="Choro, CE" />
+        <Airplane />
       </InfosContainer>
     </HeaderContainer>
   );
@@ -28,8 +28,6 @@ const HeaderContainer = styled.header`
     height: 40px;
     width: 84.95px;
   }
-
-  background-color: aquamarine;
 `;
 
 const InfosContainer = styled.div`
