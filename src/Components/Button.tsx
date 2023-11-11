@@ -19,7 +19,7 @@ export function Button({ $text, ...rest }: Props) {
 
   const [base, color, variant] = backgroundColor.split('-');
 
-  let hoverColor = undefined;
+  let hoverColor = null;
 
   if (variant == 'light' && ['yellow', 'purple'].includes(color)) {
     hoverColor = [base, color].join('-');
