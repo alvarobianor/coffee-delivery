@@ -2,7 +2,17 @@ import { defaultTheme } from '@styles/themes/default';
 import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-type Color = keyof typeof defaultTheme.colors;
+type ColorKeyofs = keyof typeof defaultTheme.colors;
+
+type Color = Extract<
+  ColorKeyofs,
+  | 'brand-purple-light'
+  | 'brand-yellow-dark'
+  | 'brand-yellow'
+  | 'brand-yellow-light'
+  | 'brand-purple-dark'
+  | 'brand-purple'
+>;
 
 type PropsStyled = {
   $background?: Color;
@@ -21,9 +31,9 @@ export function Button({ $text, ...rest }: Props) {
 
   let hoverColor = null;
 
-  if (variant == 'light' && ['yellow', 'purple'].includes(color)) {
+  if (variant == 'light') {
     hoverColor = [base, color].join('-');
-  } else if (['yellow', 'purple'].includes(color)) {
+  } else {
     hoverColor = [base, color, 'dark'].join('-');
   }
 
@@ -42,13 +52,13 @@ const ButtonComponent = styled.button<PropsStyled>`
   color: ${({ theme }) => theme.colors['base-white']};
   font-weight: 700;
   background: ${({ theme, $background = 'base-button' }) =>
-    theme.colors[$background]};
+    theme.colors[$background as ColorKeyofs]};
   font-size: ${({ theme }) => theme.textSizes['components-button-g']};
   border: none;
   border-radius: 6px;
 
   :hover {
     background: ${({ theme, $hoverColor = 'base-hover' }) =>
-      theme.colors[$hoverColor]};
+      theme.colors[$hoverColor as ColorKeyofs]};
   }
 `;
