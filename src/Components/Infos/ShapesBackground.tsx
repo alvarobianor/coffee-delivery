@@ -10,16 +10,17 @@ export function Shapes() {
 
 const Background = styled.div`
   width: 100%;
-  height: 34rem;
+  max-height: 60rem;
   position: absolute;
   z-index: -1;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 0;
 
   > img {
-    height: 50rem;
+    height: 40rem;
     min-height: 34rem;
     width: 100%;
   }
