@@ -1,7 +1,7 @@
 import Logo from '@assets/Logo.svg';
 import styled from 'styled-components';
 
-import { Airplane } from '@phosphor-icons/react';
+import { CartButton } from './CartButton';
 import { Location } from './Location';
 
 export function Header() {
@@ -10,7 +10,7 @@ export function Header() {
       <img src={Logo} />
       <InfosContainer>
         <Location text="Choro, CE" />
-        <Airplane />
+        <CartButton />
       </InfosContainer>
     </HeaderContainer>
   );
