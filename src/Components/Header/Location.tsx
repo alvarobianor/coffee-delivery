@@ -20,10 +20,12 @@ const ContainerLocation = styled.button`
   align-items: center;
   gap: 0.5rem;
 
-  padding: 0.625rem 0.5rem;
+  padding: 0.5rem;
 
   background-color: ${({ theme }) => theme.colors['brand-purple-light']};
   color: ${({ theme }) => theme.colors['brand-purple-dark']};
+
+  font-size: ${({ theme }) => theme.textSizes['text-regular-s']};
   font-weight: 500;
 
   border: 0px;
