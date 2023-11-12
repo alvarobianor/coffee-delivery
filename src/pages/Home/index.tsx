@@ -1,3 +1,5 @@
+import { Infos } from '@components/Infos';
+
 export function Home() {
-  return <h3>Alvim</h3>;
+  return <Infos />;
 }
