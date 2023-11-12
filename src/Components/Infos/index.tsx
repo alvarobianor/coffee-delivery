@@ -102,7 +102,7 @@ const ListInfo = styled.ul`
   flex-wrap: wrap;
 
   li:nth-child(n + 3) {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   li {
