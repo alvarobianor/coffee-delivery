@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { Shapes } from './ShapesBackground';
+import { Shapes as ShapesBackground } from './ShapesBackground';
 
 export function Infos() {
   return (
     <Container>
-      <Shapes />
+      <ShapesBackground />
     </Container>
   );
 }
@@ -19,4 +19,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
 `;
