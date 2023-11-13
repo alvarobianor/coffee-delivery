@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-
+/* TODO use media queries or similar */
   *{
     margin: 0 ;
     padding: 0;
