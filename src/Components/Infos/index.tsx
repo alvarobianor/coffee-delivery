@@ -40,7 +40,7 @@ export function Infos() {
             ))}
           </ListInfo>
         </Content>
-
+// create component to this
         <div className="img">
           <img src="coffee-info.png" alt="" />
         </div>
@@ -62,7 +62,7 @@ const ContainerInformations = styled.div`
   max-height: 35.5rem;
 
   display: flex;
-
+  /* move this for a component */
   .img {
     width: 50%;
     display: flex;
