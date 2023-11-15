@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Shapes as ShapesBackground } from './ShapesBackground';
+import { Shapes as ShapesBackground } from '@components/Infos/ShapesBackground';
 import { ListItem, Props as ListItemProps } from '@components/Infos/ListItem';
 import { ShoppingCart } from '@phosphor-icons/react';
 
@@ -22,6 +22,7 @@ export function Infos() {
       icon: { color: 'brand-purple', Icon: ShoppingCart },
     },
   ] as ListItemProps[];
+
   return (
     <Container>
       <ShapesBackground />
@@ -40,10 +41,10 @@ export function Infos() {
             ))}
           </ListInfo>
         </Content>
-// create component to this
-        <div className="img">
-          <img src="coffee-info.png" alt="" />
-        </div>
+
+        <ImageContainer>
+          <img src="coffee-info.png" alt="coffee" width={'80%'} />
+        </ImageContainer>
       </ContainerInformations>
     </Container>
   );
@@ -62,15 +63,12 @@ const ContainerInformations = styled.div`
   max-height: 35.5rem;
 
   display: flex;
-  /* move this for a component */
-  .img {
-    width: 50%;
-    display: flex;
-    justify-content: right;
-    img {
-      width: 80%;
-    }
-  }
+`;
+
+const ImageContainer = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: right;
 `;
 
 const Content = styled.div`
