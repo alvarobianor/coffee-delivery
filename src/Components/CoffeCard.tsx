@@ -19,6 +19,9 @@ export function CoffeeCard() {
         <Tag>Medeiros</Tag>
       </ContainerTag>
       <Title>Sou eu</Title>
+      <Description>
+        Bebida com canela feita de doses iguais de café, leite e espuma
+      </Description>
     </Container>
   );
 }
@@ -85,4 +88,15 @@ const Title = styled.h2`
   font-size: ${({ theme }) => theme.textSizes['title-title-s']};
   line-height: 130%;
   text-align: center;
+`;
+
+const Description = styled.p`
+  width: 100%;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${({ theme }) => theme.textSizes['text-regular-s']};
+  line-height: 130%;
+  text-align: center;
+  color: ${({ theme }) => theme.colors['base-label']};
+
+  margin-top: 0.5rem;
 `;
