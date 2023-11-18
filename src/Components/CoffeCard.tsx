@@ -18,6 +18,7 @@ export function CoffeeCard() {
         <Tag>Sousa</Tag>
         <Tag>Medeiros</Tag>
       </ContainerTag>
+      <Title>Sou eu</Title>
     </Container>
   );
 }
@@ -25,6 +26,8 @@ export function CoffeeCard() {
 const Container = styled.div`
   width: 16rem;
   height: 19.375rem;
+
+  padding: 0rem 1.25rem;
 
   display: flex;
   flex-direction: column;
@@ -74,4 +77,12 @@ const Tag = styled.div`
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${({ theme }) => theme.textSizes['components-tag']};
+`;
+
+const Title = styled.h2`
+  width: 100%;
+  font-family: ${({ theme }) => theme.fonts.title};
+  font-size: ${({ theme }) => theme.textSizes['title-title-s']};
+  line-height: 130%;
+  text-align: center;
 `;
