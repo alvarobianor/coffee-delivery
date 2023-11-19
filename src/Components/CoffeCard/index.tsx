@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Price } from './Price';
 
 export function CoffeeCard() {
   const info = {
@@ -22,6 +23,9 @@ export function CoffeeCard() {
       <Description>
         Bebida com canela feita de doses iguais de café, leite e espuma
       </Description>
+      <ContainerOrder>
+        <Price $price="9,90" />
+      </ContainerOrder>
     </Container>
   );
 }
@@ -99,4 +103,13 @@ const Description = styled.p`
   color: ${({ theme }) => theme.colors['base-label']};
 
   margin-top: 0.5rem;
+`;
+
+const ContainerOrder = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: auto;
+  margin-bottom: 1.25rem;
 `;
