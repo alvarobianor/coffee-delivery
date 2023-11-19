@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Price } from './Price';
+import { QuantityInput } from './QuantityInput';
 
 export function CoffeeCard() {
   const info = {
@@ -25,6 +26,11 @@ export function CoffeeCard() {
       </Description>
       <ContainerOrder>
         <Price $price="9,90" />
+        <QuantityInput
+          quantity={78}
+          onDecrease={() => {}}
+          onIncrease={() => {}}
+        />
       </ContainerOrder>
     </Container>
   );
