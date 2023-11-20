@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-import { Price } from './Price';
-import { QuantityInput } from './QuantityInput';
+import { Price } from '@components/CoffeCard/Price';
+import { QuantityInput } from '@components/CoffeCard/QuantityInput';
+import { ShoppingCart } from '@phosphor-icons/react';
+import { useState } from 'react';
+
+type TypeOperation = 'increment' | 'decrement';
 
 export function CoffeeCard() {
   const info = {
@@ -8,8 +12,24 @@ export function CoffeeCard() {
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     imgName: 'mocaccino-img.png',
     price: 9900,
-    tags: ['Tradicional', 'Comm leite'],
+    tags: ['Tradicional', 'Com leite'],
   };
+
+  const [value, setValue] = useState(0);
+
+  function handleChangeValue(type: TypeOperation) {
+    if (
+      (value + 1 == 100 && type == 'increment') ||
+      (value - 1 == -1 && type == 'decrement')
+    ) {
+      return;
+    }
+    if (type == 'increment') {
+      setValue((state) => ++state);
+    } else {
+      setValue((state) => --state);
+    }
+  }
 
   return (
     <Container>
@@ -26,11 +46,16 @@ export function CoffeeCard() {
       </Description>
       <ContainerOrder>
         <Price $price="9,90" />
-        <QuantityInput
-          quantity={78}
-          onDecrease={() => {}}
-          onIncrease={() => {}}
-        />
+        <ContainerCart>
+          <QuantityInput
+            quantity={value}
+            onDecrease={() => handleChangeValue('decrement')}
+            onIncrease={() => handleChangeValue('increment')}
+          />
+          <Cart>
+            <ShoppingCart size={22} weight="fill" />
+          </Cart>
+        </ContainerCart>
       </ContainerOrder>
     </Container>
   );
@@ -118,4 +143,25 @@ const ContainerOrder = styled.div`
   justify-content: space-between;
   margin-top: auto;
   margin-bottom: 1.25rem;
+`;
+
+const ContainerCart = styled.div`
+  display: flex;
+  flex-direction: row;
+  max-width: 7.38rem;
+  gap: 0.5rem;
+`;
+
+const Cart = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+
+  position: relative;
+
+  color: ${({ theme }) => theme.colors['base-white']};
+  background-color: ${({ theme }) => theme.colors['brand-purple-dark']};
+
+  border: 0px;
+  border-radius: 6px;
 `;
