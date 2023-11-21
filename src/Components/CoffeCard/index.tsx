@@ -6,15 +6,22 @@ import { useState } from 'react';
 
 type TypeOperation = 'increment' | 'decrement';
 
-export function CoffeeCard() {
-  const info = {
-    name: 'Mocaccino',
-    description: 'Café expresso com calda de chocolate, pouco leite e espuma',
-    imgName: 'mocaccino-img.png',
-    price: '9,90',
-    tags: ['Tradicional', 'Com leite'],
-  };
+export type CoffeCardType = {
+  id: number;
+  name: string;
+  description: string;
+  imgName: string;
+  price: string;
+  tags: string[];
+};
 
+type Props = {
+  info: CoffeCardType;
+};
+
+export function CoffeeCard({
+  info: { id, description, imgName, name, price, tags },
+}: Props) {
   const [value, setValue] = useState(0);
 
   function handleChangeValue(type: TypeOperation) {
@@ -33,19 +40,16 @@ export function CoffeeCard() {
 
   return (
     <Container>
-      <img src={`${info.imgName}`} alt={`${info.name}`} />
+      <img src={`${imgName}`} alt={`${name}`} />
       <ContainerTag>
-        <Tag>alvaro</Tag>
-        <Tag>Bianor</Tag>
-        <Tag>Sousa</Tag>
-        <Tag>Medeiros</Tag>
+        {tags.map((item) => (
+          <Tag key={`${item}_${id}`}>{item}</Tag>
+        ))}
       </ContainerTag>
-      <Title>Sou eu</Title>
-      <Description>
-        Bebida com canela feita de doses iguais de café, leite e espuma
-      </Description>
+      <Title>{name}</Title>
+      <Description>{description}</Description>
       <ContainerOrder>
-        <Price $price="9,90" />
+        <Price $price={price} />
         <ContainerCart>
           <QuantityInput
             quantity={value}
