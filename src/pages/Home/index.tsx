@@ -1,4 +1,4 @@
-import { CoffeeCard } from '@components/CoffeCard';
+import { CatalogOfCoffees } from '@components/CatalogOfCoffees';
 import { Infos } from '@components/Infos';
 
 export function Home() {
@@ -6,7 +6,7 @@ export function Home() {
     <>
       <Infos />
       {/* TODO Immplements the grid of CardCoffees */}
-      <CoffeeCard />
+      <CatalogOfCoffees />
     </>
   );
 }
