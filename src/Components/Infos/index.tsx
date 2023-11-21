@@ -32,8 +32,10 @@ export function Infos() {
             Encontre o café perfeito para qualquer hora do dia
           </TitleInfo>
           <DescriptionInfo>
-            Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
-            hora
+            Explore o Coffee Delivery, líder em entrega de café. Oferecemos a
+            melhor qualidade com rapidez e aceitamos PIX, cartão e dinheiro.
+            Desfrute do sabor premium no conforto da sua casa. Peça agora e
+            experimente o melhor do café entregue diretamente a você.
           </DescriptionInfo>
           <ListInfo>
             {itens.map((item) => (
