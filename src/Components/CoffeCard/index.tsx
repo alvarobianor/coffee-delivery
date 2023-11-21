@@ -11,7 +11,7 @@ export function CoffeeCard() {
     name: 'Mocaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     imgName: 'mocaccino-img.png',
-    price: 9900,
+    price: '9,90',
     tags: ['Tradicional', 'Com leite'],
   };
 
