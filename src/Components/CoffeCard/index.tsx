@@ -113,6 +113,7 @@ const Tag = styled.div`
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${({ theme }) => theme.textSizes['components-tag']};
+  font-weight: bold;
 `;
 
 const Title = styled.h2`
