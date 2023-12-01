@@ -1,18 +1,8 @@
-import { CoffeeCard, CoffeCardType } from '@components/CoffeCard';
+import { CoffeeCard } from '@components/CoffeCard';
+import { infos } from 'src/data';
 import styled from 'styled-components';
 
 export function CatalogOfCoffees() {
-  const infos: CoffeCardType[] = [
-    {
-      id: 1,
-      name: 'Mocaccino',
-      description: 'Café expresso com calda de chocolate, pouco leite e espuma',
-      imgName: 'mocaccino-img.png',
-      price: '9,90',
-      tags: ['Tradicional', 'Com leite'],
-    },
-  ];
-
   return (
     <Container>
       <h2>Nossos cafés</h2>
@@ -31,7 +21,7 @@ const Container = styled.div`
     font-size: ${({ theme }) => theme.textSizes['title-title-l']};
     font-weight: 800;
 
-    margin-bottom: 3.5rem;
+    margin-bottom: 1.5rem;
   }
 
   > div {

@@ -3,20 +3,12 @@ import { Price } from '@components/CoffeCard/Price';
 import { QuantityInput } from '@components/CoffeCard/QuantityInput';
 import { ShoppingCart } from '@phosphor-icons/react';
 import { useState } from 'react';
+import { Coffe } from 'src/data';
 
 type TypeOperation = 'increment' | 'decrement';
 
-export type CoffeCardType = {
-  id: number;
-  name: string;
-  description: string;
-  imgName: string;
-  price: string;
-  tags: string[];
-};
-
 type Props = {
-  info: CoffeCardType;
+  info: Coffe;
 };
 
 export function CoffeeCard({
@@ -49,7 +41,7 @@ export function CoffeeCard({
       <Title>{name}</Title>
       <Description>{description}</Description>
       <ContainerOrder>
-        <Price $price={price} />
+        <Price $price={price as string} />
         <ContainerCart>
           <QuantityInput
             quantity={value}
@@ -78,6 +70,8 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors['base-card']};
 
   border-radius: 0.375rem 2.25rem;
+
+  margin-top: 2rem;
 
   > img {
     width: 7.5rem;
