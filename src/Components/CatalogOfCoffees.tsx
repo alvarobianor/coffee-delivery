@@ -21,7 +21,7 @@ const Container = styled.div`
     font-size: ${({ theme }) => theme.textSizes['title-title-l']};
     font-weight: 800;
 
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   > div {

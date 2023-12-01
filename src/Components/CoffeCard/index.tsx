@@ -71,7 +71,7 @@ const Container = styled.div`
 
   border-radius: 0.375rem 2.25rem;
 
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 
   > img {
     width: 7.5rem;
