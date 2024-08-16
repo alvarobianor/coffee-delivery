@@ -43,9 +43,7 @@ export function CoffeeCard({
       <ContainerOrder>
         <Price $price={price as string} />
         <ContainerCart>
-          <QuantityInput
-            quantity={value}
-            onChangeValue={handleChangeValue} />
+          <QuantityInput quantity={value} onChangeValue={handleChangeValue} />
           <Cart>
             <ShoppingCart size={22} weight="fill" />
           </Cart>
