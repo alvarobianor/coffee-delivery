@@ -5,7 +5,7 @@ import { ShoppingCart } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { Coffe } from 'src/data';
 
-type TypeOperation = 'increment' | 'decrement';
+export type TypeOperation = 'increment' | 'decrement';
 
 type Props = {
   info: Coffe;
@@ -45,9 +45,7 @@ export function CoffeeCard({
         <ContainerCart>
           <QuantityInput
             quantity={value}
-            onDecrease={() => handleChangeValue('decrement')}
-            onIncrease={() => handleChangeValue('increment')}
-          />
+            onChangeValue={handleChangeValue} />
           <Cart>
             <ShoppingCart size={22} weight="fill" />
           </Cart>

@@ -1,26 +1,26 @@
 import { Minus, Plus } from '@phosphor-icons/react';
 import styled, { css } from 'styled-components';
+import { TypeOperation } from '@components/CoffeCard';
 
 interface QuantityInputProps {
   size?: 'medium' | 'small';
   quantity: number;
-  onIncrease: () => void;
-  onDecrease: () => void;
+  onChangeValue: (type: TypeOperation) => void;
 }
 
 export function QuantityInput({
   quantity,
   size = 'medium',
-  onIncrease,
-  onDecrease,
+  onChangeValue
+
 }: QuantityInputProps) {
   return (
     <QuantityInputContainer size={size}>
-      <IconWrapper disabled={quantity <= 1} onClick={onDecrease}>
+      <IconWrapper disabled={quantity <= 1} onClick={() => onChangeValue('decrement')}>
         <Minus size={14} weight="fill" />
       </IconWrapper>
       <input readOnly value={quantity} />
-      <IconWrapper disabled={quantity >= 99} onClick={onIncrease}>
+      <IconWrapper disabled={quantity >= 99} onClick={() => onChangeValue('increment')}>
         <Plus size={14} weight="fill" />
       </IconWrapper>
     </QuantityInputContainer>
