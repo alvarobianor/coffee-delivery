@@ -24,10 +24,13 @@ const Title = styled.h2`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
-
   margin-bottom: 4rem;
+
+  @media (max-width: 1600px) {
+    align-items: center;
+  }
 `;
 
 const Grid = styled.div`

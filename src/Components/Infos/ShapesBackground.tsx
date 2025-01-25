@@ -9,7 +9,7 @@ export function Shapes() {
 }
 
 const Background = styled.div`
-  width: 100%;
+  width: 80%;
   max-height: 60rem;
   position: absolute;
   z-index: -1;

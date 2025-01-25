@@ -56,22 +56,17 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   padding: 5.87rem 0;
-  position: relative;
 `;
 
 const ContainerInformations = styled.div`
   width: 100%;
   height: auto;
-  max-height: 35.5rem;
   display: flex;
+  flex-direction: row;
 
   @media (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
-
-    > div:nth-child(2) {
-      padding-left: 0rem;
-    }
   }
 `;
 
@@ -79,12 +74,10 @@ const ImageContainer = styled.div`
   display: flex;
   width: 50%;
   justify-content: right;
-  padding-left: 5rem;
 
   img {
-    width: 100%;
+    max-width: 80%;
     height: auto;
-    aspect-ratio: 1 / 1;
     object-fit: contain;
   }
 `;
@@ -101,7 +94,6 @@ const TitleInfo = styled.h1`
   font-family: ${({ theme }) => theme.fonts.title};
   font-size: ${({ theme }) => theme.textSizes['title-title-xl']};
   line-height: 100%;
-  /* margin-bottom: 1.5rem; */
 `;
 
 const DescriptionInfo = styled.p`
