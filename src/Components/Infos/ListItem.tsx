@@ -47,6 +47,7 @@ const BackgroundIcon = styled.div<{ color: Color }>`
   justify-content: center;
   height: 2rem;
   width: 2rem;
+  min-width: 2rem;
   border-radius: 50%;
 
   background-color: ${({ theme, color }) => theme.colors[color]};

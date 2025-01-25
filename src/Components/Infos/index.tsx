@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { Shapes as ShapesBackground } from '@components/Infos/ShapesBackground';
 import { ListItem, Props as ListItemProps } from '@components/Infos/ListItem';
+import { Shapes as ShapesBackground } from '@components/Infos/ShapesBackground';
 import { ShoppingCart } from '@phosphor-icons/react';
+import styled from 'styled-components';
 
 export function Infos() {
   const itens = [
@@ -38,14 +38,14 @@ export function Infos() {
             experimente o melhor do café entregue diretamente a você.
           </DescriptionInfo>
           <ListInfo>
-            {itens.map((item) => (
-              <ListItem icon={item.icon} text={item.text} key={item.text} />
+            {itens.map(({ icon, text }) => (
+              <ListItem icon={icon} text={text} key={text} />
             ))}
           </ListInfo>
         </Content>
 
         <ImageContainer>
-          <img src="coffee-info.png" alt="coffee" width={'80%'} />
+          <img src="coffee-info.png" alt="coffee" />
         </ImageContainer>
       </ContainerInformations>
     </Container>
@@ -63,14 +63,30 @@ const ContainerInformations = styled.div`
   width: 100%;
   height: auto;
   max-height: 35.5rem;
-
   display: flex;
+
+  @media (max-width: 1300px) {
+    flex-direction: column;
+    align-items: center;
+
+    > div:nth-child(2) {
+      padding-left: 0rem;
+    }
+  }
 `;
 
 const ImageContainer = styled.div`
-  width: 50%;
   display: flex;
+  width: 50%;
   justify-content: right;
+  padding-left: 5rem;
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
 `;
 
 const Content = styled.div`
@@ -78,13 +94,14 @@ const Content = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 `;
 
 const TitleInfo = styled.h1`
   font-family: ${({ theme }) => theme.fonts.title};
   font-size: ${({ theme }) => theme.textSizes['title-title-xl']};
   line-height: 100%;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 `;
 const DescriptionInfo = styled.p`
   font-family: ${({ theme }) => theme.fonts.regular};
@@ -92,6 +109,7 @@ const DescriptionInfo = styled.p`
   font-style: normal;
   font-weight: 400;
 `;
+
 const ListInfo = styled.ul`
   margin-top: auto;
   margin-bottom: 1rem;
