@@ -105,8 +105,8 @@ export const infos: Coffe[] = [
     name: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
     imgName: 'arabe-img.png',
-    price: 'especial',
-    tags: ['15,99'],
+    price: '15,99',
+    tags: ['especial'],
   },
   {
     id: 13,
