@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Price } from '@components/CoffeCard/Price';
 import { QuantityInput } from '@components/CoffeCard/QuantityInput';
 import { ShoppingCart } from '@phosphor-icons/react';
@@ -44,7 +44,7 @@ export function CoffeeCard({
         <Price $price={price as string} />
         <ContainerCart>
           <QuantityInput quantity={value} onChangeValue={handleChangeValue} />
-          <Cart>
+          <Cart $isEmptyValue={value == 0}>
             <ShoppingCart size={22} weight="fill" />
           </Cart>
         </ContainerCart>
@@ -147,7 +147,7 @@ const ContainerCart = styled.div`
   gap: 0.5rem;
 `;
 
-const Cart = styled.button`
+const Cart = styled.button<{ $isEmptyValue: boolean }>`
   display: flex;
   align-items: center;
   padding: 0.5rem;
@@ -159,4 +159,13 @@ const Cart = styled.button`
 
   border: 0px;
   border-radius: 6px;
+
+  ${({ $isEmptyValue }) => {
+    if ($isEmptyValue) {
+      return css`
+        cursor: not-allowed;
+        opacity: 70%;
+      `;
+    }
+  }}
 `;
