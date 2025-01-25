@@ -103,6 +103,7 @@ const TitleInfo = styled.h1`
   line-height: 100%;
   /* margin-bottom: 1.5rem; */
 `;
+
 const DescriptionInfo = styled.p`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${({ theme }) => theme.textSizes['text-regular-l']};
