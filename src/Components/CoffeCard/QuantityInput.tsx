@@ -11,16 +11,21 @@ interface QuantityInputProps {
 export function QuantityInput({
   quantity,
   size = 'medium',
-  onChangeValue
-
+  onChangeValue,
 }: QuantityInputProps) {
   return (
     <QuantityInputContainer size={size}>
-      <IconWrapper disabled={quantity <= 1} onClick={() => onChangeValue('decrement')}>
+      <IconWrapper
+        disabled={quantity < 1}
+        onClick={() => onChangeValue('decrement')}
+      >
         <Minus size={14} weight="fill" />
       </IconWrapper>
       <input readOnly value={quantity} />
-      <IconWrapper disabled={quantity >= 99} onClick={() => onChangeValue('increment')}>
+      <IconWrapper
+        disabled={quantity >= 99}
+        onClick={() => onChangeValue('increment')}
+      >
         <Plus size={14} weight="fill" />
       </IconWrapper>
     </QuantityInputContainer>
