@@ -112,7 +112,7 @@ const Tag = styled.div`
   font-weight: bold;
 `;
 
-const Title = styled.h2`
+const Title = styled.h3`
   width: 100%;
   font-family: ${({ theme }) => theme.fonts.title};
   font-size: ${({ theme }) => theme.textSizes['title-title-s']};

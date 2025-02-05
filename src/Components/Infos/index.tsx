@@ -75,6 +75,11 @@ const ImageContainer = styled.div`
   width: 50%;
   justify-content: right;
 
+  @media (max-width: 1300px) {
+    width: 100%;
+    justify-content: center;
+  }
+
   img {
     max-width: 80%;
     height: auto;
@@ -89,6 +94,10 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
 `;
 
 const TitleInfo = styled.h1`
