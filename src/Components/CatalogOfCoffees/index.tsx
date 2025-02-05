@@ -34,39 +34,11 @@ const Container = styled.div`
 `;
 
 const Grid = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  row-gap: 3rem;
-  column-gap: 2rem;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-gap: 2rem;
+  width: 100%;
 
-  @media (max-width: 1600px) {
-    justify-content: space-between;
-  }
-
-  @media (max-width: 863px) {
-    justify-content: center;
-  }
+  align-items: center;
+  justify-items: center;
 `;
-
-// const Grid = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(5, 1fr);
-//   grid-gap: 2rem;
-
-//   @media (max-width: 1600px) {
-//     grid-template-columns: repeat(4, 1fr);
-//   }
-
-//   @media (max-width: 1400px) {
-//     grid-template-columns: repeat(3, 1fr);
-//   }
-
-//   @media (max-width: 1200px) {
-//     grid-template-columns: repeat(2, 1fr);
-//   }
-
-//   @media (max-width: 992px) {
-//     grid-template-columns: 1fr;
-//   }
-// `;
