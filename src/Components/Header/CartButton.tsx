@@ -1,10 +1,16 @@
 import { ShoppingCart } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export function CartButton() {
   const quantity = 3;
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/checkout');
+  }
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <ShoppingCart size={22} weight="fill" />
       {quantity > 0 && (
         <QuantityItens>{quantity < 10 ? quantity : '+9'}</QuantityItens>
