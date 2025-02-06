@@ -1,3 +1,3 @@
 export function ResumeOrder() {
-  return <h1>Resume Order</h1>;
+  return <h1>Cafés Selecionados</h1>;
 }

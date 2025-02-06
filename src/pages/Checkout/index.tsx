@@ -6,18 +6,32 @@ import { styled } from 'styled-components';
 export function Checkout() {
   return (
     <Container>
-      <section>
+      <OrderSection>
+        <h2>Complete seu pedido</h2>
         <FinishOrder />
         <Payment />
-      </section>
+      </OrderSection>
       <ResumeOrder />
     </Container>
   );
 }
 
 const Container = styled.main`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   width: 100%;
   flex-direction: row;
+`;
+
+const OrderSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h2 {
+    color: ${({ theme }) => theme.colors['base-subtitle']};
+    font-size: 1rem;
+    font-weight: bold;
+  }
 `;
