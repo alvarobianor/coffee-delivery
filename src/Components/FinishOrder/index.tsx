@@ -11,12 +11,28 @@ export function FinishOrder() {
           <p>Informe o endereço onde deseja receber seu pedido</p>
         </ContainerTitle>
       </ContainerHeader>
+      <Form>
+        <Input type="text" placeholder="CEP" />
+        <Input type="text" placeholder="Rua" />
+        <Row>
+          <Input type="text" placeholder="Número" />
+          <InputWrapper>
+            <StyledInput $flexGrow={2} type="text" placeholder="Complemento" />
+          </InputWrapper>
+        </Row>
+        <Row>
+          <Input type="text" placeholder="Bairro" />
+          <Input $flexGrow={2} type="text" placeholder="Cidade" />
+          <Input $widthRem={5} type="text" placeholder="UF" />
+        </Row>
+      </Form>
     </Container>
   );
 }
 
 const Container = styled.main`
   display: flex;
+  gap: 2rem;
   width: 100%;
   flex-direction: column;
 
@@ -40,4 +56,52 @@ const ContainerHeader = styled.header`
 const ContainerTitle = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const Row = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 0.75rem;
+`;
+
+interface InputProps {
+  $flexGrow?: number;
+  $widthRem?: number;
+}
+
+const Input = styled.input<InputProps>`
+  ${({ $widthRem }) => $widthRem && `width: ${$widthRem}rem;`}
+  flex-grow: ${({ $flexGrow = 0 }) => $flexGrow};
+  padding: 0.75rem;
+  color: ${({ theme }) => theme.colors['base-label']};
+  background-color: ${({ theme }) => theme.colors['base-input']};
+  border: 0px;
+  border-radius: 6px;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  position: relative;
+  width: 100%;
+
+  &::after {
+    content: 'Optional';
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.875rem;
+    color: ${({ theme }) => theme.colors['base-label']};
+    font-style: italic;
+  }
+`;
+
+const StyledInput = styled(Input)`
+  padding-right: 4rem;
 `;
