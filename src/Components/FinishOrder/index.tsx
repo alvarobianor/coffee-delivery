@@ -62,12 +62,28 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    div,
+    input {
+      width: 100%;
+    }
+  }
 `;
 
 const Row = styled.div`
   display: flex;
   width: 100%;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    div,
+    input {
+      width: 100%;
+    }
+  }
 `;
 
 interface InputProps {
@@ -99,6 +115,10 @@ const InputWrapper = styled.div`
     font-size: 0.875rem;
     color: ${({ theme }) => theme.colors['base-label']};
     font-style: italic;
+
+    @media (max-width: 768px) {
+      font-size: 0.5rem;
+    }
   }
 `;
 
