@@ -22,6 +22,7 @@ const Container = styled.main`
   gap: 2rem;
   width: 100%;
   flex-direction: row;
+  margin-bottom: 5rem;
 `;
 
 const OrderSection = styled.section`

@@ -1,11 +1,19 @@
 import { MapPinLine } from '@phosphor-icons/react';
-import { styled } from 'styled-components';
+import {
+  ContainerHeader,
+  ContainerMain,
+  ContainerTitle,
+  Icon,
+} from '@styles/GlobalStyles';
+import styled from 'styled-components';
 
 export function FinishOrder() {
   return (
-    <Container>
+    <ContainerMain>
       <ContainerHeader>
-        <MapPinLine size={22} />
+        <Icon $color="brand-yellow-dark">
+          <MapPinLine size={22} />
+        </Icon>
         <ContainerTitle>
           <h3>Endereço de Entrega</h3>
           <p>Informe o endereço onde deseja receber seu pedido</p>
@@ -26,42 +34,14 @@ export function FinishOrder() {
           <Input $widthRem={5} type="text" placeholder="UF" />
         </Row>
       </Form>
-    </Container>
+    </ContainerMain>
   );
 }
 
-const Container = styled.main`
+const Row = styled.div`
   display: flex;
-  gap: 2rem;
   width: 100%;
-  flex-direction: column;
-
-  background-color: ${({ theme }) => theme.colors['base-card']};
-  padding: 2.5rem;
-  border-radius: 6px;
-
-  svg {
-    color: ${({ theme }) => theme.colors['brand-yellow-dark']};
-  }
-`;
-
-const ContainerHeader = styled.header`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.5rem;
-`;
-
-const ContainerTitle = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -72,10 +52,10 @@ const Form = styled.form`
   }
 `;
 
-const Row = styled.div`
+const Form = styled.form`
   display: flex;
-  width: 100%;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 1rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
