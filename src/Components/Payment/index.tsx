@@ -1,7 +1,7 @@
 import { CurrencyDollar, CreditCard, Money, Bank } from '@phosphor-icons/react';
 import {
   ContainerHeader,
-  ContainerMain,
+  ContainerContent,
   ContainerTitle,
   Icon,
 } from '@styles/GlobalStyles';
@@ -22,7 +22,7 @@ export function Payment() {
   }
 
   return (
-    <ContainerMain>
+    <ContainerContent>
       <ContainerHeader>
         <Icon $color="brand-purple">
           <CurrencyDollar size={22} />
@@ -44,7 +44,7 @@ export function Payment() {
           </RadioButton>
         ))}
       </RadioGroup>
-    </ContainerMain>
+    </ContainerContent>
   );
 }
 

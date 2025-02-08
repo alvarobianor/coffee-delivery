@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 `;
-export const ContainerMain = styled.main`
+export const ContainerContent = styled.div`
   display: flex;
   gap: 2rem;
   width: 100%;

@@ -1,7 +1,7 @@
 import { MapPinLine } from '@phosphor-icons/react';
 import {
   ContainerHeader,
-  ContainerMain,
+  ContainerContent,
   ContainerTitle,
   Icon,
 } from '@styles/GlobalStyles';
@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 export function FinishOrder() {
   return (
-    <ContainerMain>
+    <ContainerContent>
       <ContainerHeader>
         <Icon $color="brand-yellow-dark">
           <MapPinLine size={22} />
@@ -34,7 +34,7 @@ export function FinishOrder() {
           <Input $widthRem={5} type="text" placeholder="UF" />
         </Row>
       </Form>
-    </ContainerMain>
+    </ContainerContent>
   );
 }
 
