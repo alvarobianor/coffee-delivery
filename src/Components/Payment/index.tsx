@@ -5,7 +5,8 @@ import {
   ContainerTitle,
   Icon,
 } from '@styles/GlobalStyles';
-import { styled } from 'styled-components';
+import { useState } from 'react';
+import { css, styled } from 'styled-components';
 
 export function Payment() {
   const paymentMethods = [
@@ -13,6 +14,13 @@ export function Payment() {
     { icon: <Money size={22} />, name: 'Dinheiro' },
     { icon: <Bank size={22} />, name: 'Pix' },
   ];
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(-1);
+
+  function handleSelectPaymentMethod(index: number) {
+    setSelectedPaymentMethod((state) => (state === index ? -1 : index));
+  }
+
   return (
     <ContainerMain>
       <ContainerHeader>
@@ -26,7 +34,11 @@ export function Payment() {
       </ContainerHeader>
       <RadioGroup>
         {paymentMethods.map((paymentMethod, index) => (
-          <RadioButton key={index}>
+          <RadioButton
+            key={index}
+            $isSelected={selectedPaymentMethod === index}
+            onClick={() => handleSelectPaymentMethod(index)}
+          >
             <Icon $color="brand-purple">{paymentMethod.icon}</Icon>
             {paymentMethod.name}
           </RadioButton>
@@ -41,13 +53,17 @@ const RadioGroup = styled.div`
   gap: 1rem;
 `;
 
-const RadioButton = styled.button`
+interface RadioButtonProps {
+  $isSelected: boolean;
+}
+
+const RadioButton = styled.button<RadioButtonProps>`
   display: flex;
   gap: 0.75rem;
   align-items: center;
   width: 100%;
   background-color: ${({ theme }) => theme.colors['base-button']};
-  border: 0;
+  border: 1px solid transparent;
   padding: 1rem;
   border-radius: 6px;
   color: ${({ theme }) => theme.colors['base-label']};
@@ -56,4 +72,17 @@ const RadioButton = styled.button`
     background-color: ${({ theme }) => theme.colors['base-hover']};
     transition: background-color 0.5s;
   }
+
+  ${({ $isSelected }) =>
+    $isSelected &&
+    css`
+      background-color: ${({ theme }) => theme.colors['brand-purple-light']};
+      color: ${({ theme }) => theme.colors['base-text']};
+      border-color: ${({ theme }) => theme.colors['brand-purple-dark']};
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors['brand-purple-light']};
+        transition: background-color 0.5s;
+      }
+    `}
 `;
