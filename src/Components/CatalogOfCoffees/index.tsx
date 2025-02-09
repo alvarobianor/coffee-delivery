@@ -35,10 +35,13 @@ const Container = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   grid-gap: 2rem;
   width: 100%;
 
   align-items: center;
-  justify-items: center;
+
+  @media (max-width: 1600px) {
+    justify-items: center;
+  }
 `;
