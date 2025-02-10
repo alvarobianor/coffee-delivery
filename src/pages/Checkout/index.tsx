@@ -6,12 +6,15 @@ import { styled } from 'styled-components';
 export function Checkout() {
   return (
     <Container>
-      <OrderSection>
+      <Section>
         <h2>Complete seu pedido</h2>
         <FinishOrder />
         <Payment />
-      </OrderSection>
-      <ResumeOrder />
+      </Section>
+      <Section>
+        <h2>Cafés Selecionados</h2>
+        <ResumeOrder />
+      </Section>
     </Container>
   );
 }
@@ -25,14 +28,14 @@ const Container = styled.main`
   margin-bottom: 5rem;
 `;
 
-const OrderSection = styled.section`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
   h2 {
-    color: ${({ theme }) => theme.colors['base-subtitle']};
-    font-size: 1rem;
-    font-weight: bold;
+    font-family: ${({ theme }) => theme.fonts.title};
+    font-size: ${({ theme }) => theme.textSizes['title-title-m']};
+    color: ${({ theme }) => theme.colors['base-title']};
   }
 `;
