@@ -36,6 +36,6 @@ const Section = styled.section`
   h2 {
     font-family: ${({ theme }) => theme.fonts.title};
     font-size: ${({ theme }) => theme.textSizes['title-title-m']};
-    color: ${({ theme }) => theme.colors['base-title']};
+    color: ${({ theme }) => theme.colors['base-text']};
   }
 `;
