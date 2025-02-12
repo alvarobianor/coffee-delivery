@@ -1,8 +1,14 @@
 import { CoffeeResumeCard } from '@components/CoffeeResumeCard';
 import { Divider } from '@components/Divider';
+import { useNavigate } from 'react-router-dom';
 import { css, styled } from 'styled-components';
 
 export function ResumeOrder() {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/order-status/123');
+  }
   return (
     <Container>
       <ResumeContainer>
@@ -24,7 +30,9 @@ export function ResumeOrder() {
           <p>R$ 50,00</p>
         </Row>
       </ResumeContainer>
-      <FinishOrderButton>Finalizar pedido</FinishOrderButton>
+      <FinishOrderButton onClick={handleClick}>
+        Finalizar pedido
+      </FinishOrderButton>
     </Container>
   );
 }
