@@ -26,6 +26,10 @@ const Container = styled.main`
   width: 100%;
   flex-direction: row;
   margin-bottom: 5rem;
+
+  @media (max-width: 1400px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Section = styled.section`
