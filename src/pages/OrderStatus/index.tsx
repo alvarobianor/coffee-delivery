@@ -1,21 +1,69 @@
+import { Coins, HourglassHigh, MapPin } from '@phosphor-icons/react';
+import { defaultTheme } from '@styles/themes/default';
 import { styled } from 'styled-components';
+import Img from 'public/men-motocycle.svg';
 
 export function OrderStatus() {
   return (
     <Container>
-      <Section>
-        <h2>Uhu! Pedido confirmado</h2>
+      <Header>
+        <h1>Uhu! Pedido confirmado</h1>
         <p>Agora é só aguardar que logo o café chegará até você</p>
+      </Header>
+      <section>
         <Card>
-          <p>
-            Entrega em Rua João Daniel Martinelli, 102Farrapos - Porto Alegre,
-            RS
-          </p>
+          <Row>
+            <Icon $color="brand-purple">
+              <MapPin
+                size={22}
+                weight="fill"
+                color={defaultTheme.colors['base-white']}
+              />
+            </Icon>
+            <p>
+              Entrega em{' '}
+              <b>
+                Rua João Daniel Martinelli, 102 <b />
+              </b>
+              <br />
+              Farrapos - Porto Alegre, RS
+            </p>
+          </Row>
+
+          <Row>
+            <Icon $color="brand-yellow">
+              <HourglassHigh
+                size={22}
+                weight="fill"
+                color={defaultTheme.colors['base-white']}
+              />
+            </Icon>
+
+            <p>
+              Previsão de entrega
+              <br />
+              <b>20 min - 30 min </b>
+            </p>
+          </Row>
+
+          <Row>
+            <Icon $color="base-error">
+              <Coins
+                size={22}
+                weight="fill"
+                color={defaultTheme.colors['base-white']}
+              />
+            </Icon>
+            <p>
+              Pagamento na entrega <br />
+              <b>Cartão de Crédito</b>
+            </p>
+          </Row>
         </Card>
-      </Section>
-      <Section>
-        <h2>Cafés Selecionados</h2>
-      </Section>
+      </section>
+      <section>
+        <Logo src={Img} alt="Logo do Café" />
+      </section>
     </Container>
   );
 }
@@ -27,14 +75,31 @@ const Container = styled.main`
   width: 100%;
   flex-direction: row;
   margin-bottom: 5rem;
+
+  grid-template-areas:
+    'header header'
+    'main sidebar';
+
+  & > :first-child {
+    grid-area: header;
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'header'
+      'header';
+  }
 `;
 
-const Section = styled.section`
+const Header = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 
-  > h2 {
+  > h1 {
+    width: 100%;
     font-family: ${({ theme }) => theme.fonts.title};
     font-size: ${({ theme }) => theme.textSizes['title-title-l']};
     color: ${({ theme }) => theme.colors['brand-yellow-dark']};
@@ -46,8 +111,31 @@ const Section = styled.section`
   }
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+`;
+interface IconProps {
+  $color: keyof typeof defaultTheme.colors;
+}
+
+const Icon = styled.div<IconProps>`
+  min-width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: ${({ theme, $color }) => theme.colors[$color]};
+`;
+
 const Card = styled.div`
   display: flex;
+  gap: 2rem;
   flex-direction: column;
   padding: 3rem;
   margin-top: 3rem;
@@ -66,8 +154,19 @@ const Card = styled.div`
     border-radius: inherit;
     background: linear-gradient(
       to right,
-      ${({ theme }) => theme.colors['brand-yellow-light']},
-      ${({ theme }) => theme.colors['brand-purple-dark']}
+      ${({ theme }) => theme.colors['brand-yellow']},
+      ${({ theme }) => theme.colors['brand-purple']}
     );
+  }
+`;
+
+const Logo = styled.img`
+  min-width: 70%;
+  min-height: 70%;
+  margin: auto auto 0 0;
+
+  @media (max-width: 1200px) {
+    min-width: 100%;
+    min-height: 100%;
   }
 `;
