@@ -1,6 +1,7 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useReducer, useState } from 'react';
+import { orderReducer } from 'src/reducer/orderReducer';
 
-interface Order {
+export interface Order {
   id: string;
   product: string;
   quantity: number;
@@ -24,6 +25,10 @@ export const OrderContext = createContext<OrderContextType | undefined>(
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
   const [orders, setOrders] = useState<Order[]>([]);
+
+  const [ordersReducer, dispatch] = useReducer(orderReducer, {
+    orders: [],
+  });
 
   const addOrder = (order: Order) => {
     setOrders((prevOrders) => [...prevOrders, order]);
