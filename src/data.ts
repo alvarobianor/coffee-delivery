@@ -3,7 +3,7 @@ export type Coffe = {
   name: string;
   description: string;
   imgName: string;
-  price: string | number;
+  price: number;
   tags: string[];
 };
 
@@ -13,7 +13,7 @@ export const infos: Coffe[] = [
     name: 'Mocaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     imgName: 'mocaccino-img.png',
-    price: '11,99',
+    price: 11.99,
     tags: ['Tradicional', 'Com leite'],
   },
   {
@@ -21,7 +21,7 @@ export const infos: Coffe[] = [
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
     imgName: 'expresso-tradicional-img.png',
-    price: '6,99',
+    price: 6.99,
     tags: ['tradicional'],
   },
   {
@@ -29,7 +29,7 @@ export const infos: Coffe[] = [
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
     imgName: 'expresso-americano-img.png',
-    price: '5,99',
+    price: 5.99,
     tags: ['tradicional'],
   },
   {
@@ -37,7 +37,7 @@ export const infos: Coffe[] = [
     name: 'Expresso Cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
     imgName: 'expresso-cremoso-img.png',
-    price: '8,99',
+    price: 8.99,
     tags: ['tradicional'],
   },
   {
@@ -45,7 +45,7 @@ export const infos: Coffe[] = [
     name: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
     imgName: 'cafe-com-leite-img.png',
-    price: '8,99',
+    price: 8.99,
     tags: ['tradicional', 'com leite'],
   },
   {
@@ -54,7 +54,7 @@ export const infos: Coffe[] = [
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
     imgName: 'latte-img.png',
-    price: '8,99',
+    price: 8.99,
     tags: ['tradicional', 'com leite'],
   },
   {
@@ -63,7 +63,7 @@ export const infos: Coffe[] = [
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma',
     imgName: 'capuccino-img.png',
-    price: '10,99',
+    price: 10.99,
     tags: ['tradiocinal', 'com leite'],
   },
   {
@@ -72,7 +72,7 @@ export const infos: Coffe[] = [
     description:
       'Café expresso misturado com um pouco de leite quente e espuma',
     imgName: 'macchiato-img.png',
-    price: '9,99',
+    price: 9.99,
     tags: ['tradicional', 'com leite'],
   },
   {
@@ -80,7 +80,7 @@ export const infos: Coffe[] = [
     name: 'Chocolate Quente',
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
     imgName: 'chocolate-quente-img.png',
-    price: '14,99',
+    price: 14.99,
     tags: ['especial', 'com leite'],
   },
   {
@@ -89,7 +89,7 @@ export const infos: Coffe[] = [
     description:
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
     imgName: 'cubano-img.png',
-    price: '15,99',
+    price: 15.99,
     tags: ['especial', 'alcoólico', 'gelado'],
   },
   {
@@ -97,7 +97,7 @@ export const infos: Coffe[] = [
     name: 'Havaiano',
     description: 'Bebida adocicada preparada com café e leite de coco',
     imgName: 'havaiano-img.png',
-    price: '15,99',
+    price: 15.99,
     tags: ['especial'],
   },
   {
@@ -105,7 +105,7 @@ export const infos: Coffe[] = [
     name: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
     imgName: 'arabe-img.png',
-    price: '15,99',
+    price: 15.99,
     tags: ['especial'],
   },
   {
@@ -113,7 +113,7 @@ export const infos: Coffe[] = [
     name: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
     imgName: 'irlandes-img.png',
-    price: '19,99',
+    price: 19.99,
     tags: ['especial', 'alcoólico'],
   },
 ];
