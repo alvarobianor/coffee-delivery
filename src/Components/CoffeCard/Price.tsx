@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 type Props = {
-  $price: string;
+  $price: number;
   $currency?: 'real' | 'dolar';
 };
 
 export function Price({ $price, $currency = 'real' }: Props) {
+  const formatedPrice = new Intl.NumberFormat('pt-BR', {}).format($price);
   return (
     <Container>
       <Currency>{$currency == 'dolar' ? '$' : 'R$'}</Currency>
-      <Value>{$price}</Value>
+      <Value>{formatedPrice}</Value>
     </Container>
   );
 }

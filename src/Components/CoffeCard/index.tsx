@@ -41,7 +41,7 @@ export function CoffeeCard({
       <Title>{name}</Title>
       <Description>{description}</Description>
       <ContainerOrder>
-        <Price $price={price as string} />
+        <Price $price={price} />
         <ContainerCart>
           <QuantityInput quantity={value} onChangeValue={handleChangeValue} />
           <Cart $isEmptyValue={value == 0}>
