@@ -11,7 +11,7 @@ interface OrderContextType {
   order: Order[];
   address: unknown;
   total: number;
-  AddOrIncrease: (id: number) => void;
+  addOrIncrease: (id: number) => void;
   removeOdDecrease: (id: number) => void;
   clearOrders: () => void;
 }
@@ -27,7 +27,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     total: 0,
   } as OrderState);
 
-  const AddOrIncrease = (id: number) => {
+  const addOrIncrease = (id: number) => {
     dispatch(addItem(id));
   };
 
@@ -45,7 +45,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
         order,
         address,
         total,
-        AddOrIncrease,
+        addOrIncrease,
         removeOdDecrease,
         clearOrders,
       }}
