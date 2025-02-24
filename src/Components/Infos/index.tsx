@@ -1,5 +1,4 @@
 import { ListItem, Props as ListItemProps } from '@components/Infos/ListItem';
-import { Shapes as ShapesBackground } from '@components/Infos/ShapesBackground';
 import { ShoppingCart } from '@phosphor-icons/react';
 import styled from 'styled-components';
 
@@ -25,7 +24,6 @@ export function Infos() {
 
   return (
     <Container>
-      <ShapesBackground />
       <ContainerInformations>
         <Content>
           <TitleInfo>
@@ -56,6 +54,11 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   padding: 5.87rem 0;
+
+  background-image: url('background-info.svg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 const ContainerInformations = styled.div`
