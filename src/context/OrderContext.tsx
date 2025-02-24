@@ -1,19 +1,18 @@
-import { createContext, ReactNode, useReducer, useState } from 'react';
+import { createContext, ReactNode, useReducer } from 'react';
 import { Coffe } from 'src/data';
+import { addItem, removeItem, resetOrders } from 'src/reducer/actions';
 import { orderReducer, OrderState } from 'src/reducer/orderReducer';
 
 export interface Order extends Coffe {
   quantity: number;
 }
 
-export interface OrderC {
-  productId: number;
-}
-
 interface OrderContextType {
-  orders: Order[];
-  addOrder: (order: Order) => void;
-  removeOrder: (id: string) => void;
+  order: Order[];
+  address: unknown;
+  total: number;
+  AddOrIncrease: (id: number) => void;
+  removeOdDecrease: (id: number) => void;
   clearOrders: () => void;
 }
 
@@ -22,30 +21,36 @@ export const OrderContext = createContext<OrderContextType | undefined>(
 );
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
-  const [orders, setOrders] = useState<Order[]>([]);
-
-  const [ordersReducer, dispatch] = useReducer(orderReducer, {
+  const [{ order, address, total }, dispatch] = useReducer(orderReducer, {
     order: [],
     address: {},
     total: 0,
   } as OrderState);
 
-  const addOrder = (order: Order) => {
-    setOrders((prevOrders) => [...prevOrders, order]);
+  const AddOrIncrease = (id: number) => {
+    dispatch(addItem(id));
   };
 
-  const removeOrder = (id: string) => {
-    setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id));
+  const removeOdDecrease = (id: number) => {
+    dispatch(removeItem(id));
   };
 
   const clearOrders = () => {
-    setOrders([]);
+    dispatch(resetOrders());
   };
 
   return (
     <OrderContext.Provider
-      value={{ orders, addOrder, removeOrder, clearOrders }}
+      value={{
+        order,
+        address,
+        total,
+        AddOrIncrease,
+        removeOdDecrease,
+        clearOrders,
+      }}
     >
+      removeOdDecrease
       {children}
     </OrderContext.Provider>
   );
