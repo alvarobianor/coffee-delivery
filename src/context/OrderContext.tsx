@@ -50,7 +50,6 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
         clearOrders,
       }}
     >
-      removeOrDecrease
       {children}
     </OrderContext.Provider>
   );
