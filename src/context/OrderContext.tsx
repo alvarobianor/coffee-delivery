@@ -12,7 +12,7 @@ interface OrderContextType {
   address: unknown;
   total: number;
   addOrIncrease: (id: number) => void;
-  removeOdDecrease: (id: number) => void;
+  removeOrDecrease: (id: number) => void;
   clearOrders: () => void;
 }
 
@@ -31,7 +31,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     dispatch(addItem(id));
   };
 
-  const removeOdDecrease = (id: number) => {
+  const removeOrDecrease = (id: number) => {
     dispatch(removeItem(id));
   };
 
@@ -46,11 +46,11 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
         address,
         total,
         addOrIncrease,
-        removeOdDecrease,
+        removeOrDecrease,
         clearOrders,
       }}
     >
-      removeOdDecrease
+      removeOrDecrease
       {children}
     </OrderContext.Provider>
   );
