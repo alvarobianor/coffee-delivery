@@ -1,9 +1,11 @@
+import { useOrderContext } from '@hooks/useOrder';
 import { ShoppingCart } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export function CartButton() {
-  const quantity = 3;
+  const { order } = useOrderContext();
+  const quantity = order.reduce((acc, item) => acc + item.quantity, 0);
   const navigate = useNavigate();
 
   function handleClick() {

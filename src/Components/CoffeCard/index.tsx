@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components';
 import { Price } from '@components/CoffeCard/Price';
 import { QuantityInput } from '@components/CoffeCard/QuantityInput';
+import { useOrderContext } from '@hooks/useOrder';
 import { ShoppingCart } from '@phosphor-icons/react';
-import { useState } from 'react';
 import { Coffe } from 'src/data';
+import styled, { css } from 'styled-components';
 
 export type TypeOperation = 'increment' | 'decrement';
 
@@ -14,19 +14,21 @@ type Props = {
 export function CoffeeCard({
   info: { id, description, imgName, name, price, tags },
 }: Props) {
-  const [value, setValue] = useState(0);
+  const { addOrIncrease, removeOrDecrease, order } = useOrderContext();
 
+  const orderItem = order.find((item) => item.id === id);
+  const quantity = orderItem?.quantity || 0;
   function handleChangeValue(type: TypeOperation) {
     if (
-      (value + 1 == 100 && type == 'increment') ||
-      (value - 1 == -1 && type == 'decrement')
+      (quantity + 1 == 100 && type == 'increment') ||
+      (quantity - 1 == -1 && type == 'decrement')
     ) {
       return;
     }
     if (type == 'increment') {
-      setValue((state) => ++state);
+      addOrIncrease(id);
     } else {
-      setValue((state) => --state);
+      removeOrDecrease(id);
     }
   }
 
@@ -43,8 +45,11 @@ export function CoffeeCard({
       <ContainerOrder>
         <Price $price={price} />
         <ContainerCart>
-          <QuantityInput quantity={value} onChangeValue={handleChangeValue} />
-          <Cart $isEmptyValue={value == 0}>
+          <QuantityInput
+            quantity={quantity}
+            onChangeValue={handleChangeValue}
+          />
+          <Cart $isEmptyValue={quantity == 0}>
             <ShoppingCart size={22} weight="fill" />
           </Cart>
         </ContainerCart>
