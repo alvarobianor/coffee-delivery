@@ -3,12 +3,15 @@ import { Router } from './Router';
 import { GlobalStyle } from '@styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '@styles/themes/default';
+import { OrderProvider } from './context/OrderContext';
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <Router />
+        <OrderProvider>
+          <Router />
+        </OrderProvider>
         <GlobalStyle />
       </BrowserRouter>
     </ThemeProvider>
