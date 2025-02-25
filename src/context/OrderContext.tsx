@@ -5,8 +5,9 @@ import {
   decreaseItem,
   clearItem,
   resetOrders,
+  addAddress,
 } from 'src/reducer/actions';
-import { orderReducer, OrderState } from 'src/reducer/orderReducer';
+import { Address, orderReducer } from 'src/reducer/orderReducer';
 
 export interface Order extends Coffe {
   quantity: number;
@@ -20,6 +21,7 @@ interface OrderContextType {
   removeOrDecrease: (id: number) => void;
   removeItem: (id: number) => void;
   clearOrders: () => void;
+  createAddress: (address: Address) => void;
 }
 
 export const OrderContext = createContext<OrderContextType | undefined>(
@@ -29,9 +31,9 @@ export const OrderContext = createContext<OrderContextType | undefined>(
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
   const [{ order, address, total }, dispatch] = useReducer(orderReducer, {
     order: [],
-    address: {},
+    address: {} as Address,
     total: 0,
-  } as OrderState);
+  });
 
   function addOrIncrease(id: number) {
     dispatch(addItem(id));
@@ -49,6 +51,10 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     dispatch(resetOrders());
   }
 
+  function createAddress(address: Address) {
+    dispatch(addAddress(address));
+  }
+
   return (
     <OrderContext.Provider
       value={{
@@ -59,6 +65,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
         removeOrDecrease,
         removeItem,
         clearOrders,
+        createAddress,
       }}
     >
       {children}

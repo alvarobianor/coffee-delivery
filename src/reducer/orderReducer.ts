@@ -3,15 +3,26 @@ import { ActionType } from './actions';
 import { produce } from 'immer';
 import { infos } from 'src/data';
 
+export interface Address {
+  code: string;
+  street: string;
+  number: string;
+  complement?: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+}
+
 export interface OrderState {
   order: Order[];
-  address: unknown;
+  address: Address;
   total: number;
 }
 
 export interface Actions {
   type: ActionType;
   payload: {
+    address?: Address;
     addItem?: {
       id: number;
     };
@@ -78,8 +89,13 @@ export const orderReducer = (state: OrderState, action: Actions) => {
           0,
         );
       });
+
+    case ActionType.ADD_ADDRESS:
+      return produce(state, (draftState) => {
+        draftState.address = action.payload.address as Address;
+      });
     case ActionType.CLEAR_ORDERS:
-      return { order: [], address: {}, total: 0 };
+      return { order: [], address: {} as Address, total: 0 };
     default:
       return state;
   }

@@ -37,6 +37,8 @@ export function Payment() {
           <RadioButton
             key={index}
             $isSelected={selectedPaymentMethod === index}
+            name={paymentMethod.name}
+            value={paymentMethod.name}
             onClick={() => handleSelectPaymentMethod(index)}
           >
             <Icon $color="brand-purple">{paymentMethod.icon}</Icon>

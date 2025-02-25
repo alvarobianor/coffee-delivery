@@ -1,8 +1,11 @@
+import { Address } from './orderReducer';
+
 export enum ActionType {
   ADD_ITEM = 'ADD_ITEM',
   REMOVE_ITEM = 'REMOVE_ITEM',
   CLEAR_ORDERS = 'CLEAR_ORDERS',
   CLEAR_ITEM = 'CLEAR_ITEM',
+  ADD_ADDRESS = 'ADD_ADDRESS',
 }
 
 export function addItem(id: number) {
@@ -42,5 +45,14 @@ export function resetOrders() {
   return {
     type: ActionType.CLEAR_ORDERS,
     payload: {},
+  };
+}
+
+export function addAddress(address: Address) {
+  return {
+    type: ActionType.ADD_ADDRESS,
+    payload: {
+      address: address,
+    },
   };
 }
