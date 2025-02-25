@@ -2,6 +2,7 @@ export enum ActionType {
   ADD_ITEM = 'ADD_ITEM',
   REMOVE_ITEM = 'REMOVE_ITEM',
   CLEAR_ORDERS = 'CLEAR_ORDERS',
+  CLEAR_ITEM = 'CLEAR_ITEM',
 }
 
 export function addItem(id: number) {
@@ -15,9 +16,20 @@ export function addItem(id: number) {
   };
 }
 
-export function removeItem(id: number) {
+export function decreaseItem(id: number) {
   return {
     type: ActionType.REMOVE_ITEM,
+    payload: {
+      addItem: {
+        id: id,
+      },
+    },
+  };
+}
+
+export function clearItem(id: number) {
+  return {
+    type: ActionType.CLEAR_ITEM,
     payload: {
       addItem: {
         id: id,

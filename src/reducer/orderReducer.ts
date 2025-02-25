@@ -68,7 +68,17 @@ export const orderReducer = (state: OrderState, action: Actions) => {
     //     (item) => item.id !== action.payload.order[0].id,
     //   ),
     // };
-    case 'CLEAR_ORDERS':
+    case ActionType.CLEAR_ITEM:
+      return produce(state, (draftState) => {
+        draftState.order = draftState.order.filter(
+          (item) => item.id !== action.payload.addItem?.id,
+        );
+        draftState.total = draftState.order.reduce(
+          (acc, item) => acc + item.price * item.quantity,
+          0,
+        );
+      });
+    case ActionType.CLEAR_ORDERS:
       return { order: [], address: {}, total: 0 };
     default:
       return state;
