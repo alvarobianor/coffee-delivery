@@ -2,6 +2,7 @@ import { Price } from '@components/CoffeCard/Price';
 import { QuantityInput } from '@components/CoffeCard/QuantityInput';
 import { useOrderContext } from '@hooks/useOrder';
 import { ShoppingCart } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
 import { Coffe } from 'src/data';
 import styled, { css } from 'styled-components';
 
@@ -11,13 +12,16 @@ type Props = {
   info: Coffe;
 };
 
-export function CoffeeCard({
-  info: { id, description, imgName, name, price, tags },
-}: Props) {
+export function CoffeeCard({ info }: Props) {
+  const { id, description, imgName, name, price, tags } = info;
+
   const { addOrIncrease, removeOrDecrease, order } = useOrderContext();
+  const navigate = useNavigate();
 
   const orderItem = order.find((item) => item.id === id);
   const quantity = orderItem?.quantity || 0;
+  const isEmpty = quantity == 0;
+
   function handleChangeValue(type: TypeOperation) {
     if (
       (quantity + 1 == 100 && type == 'increment') ||
@@ -30,6 +34,11 @@ export function CoffeeCard({
     } else {
       removeOrDecrease(id);
     }
+  }
+
+  function handleClick() {
+    if (isEmpty) return;
+    navigate('/checkout');
   }
 
   return (
@@ -49,7 +58,7 @@ export function CoffeeCard({
             quantity={quantity}
             onChangeValue={handleChangeValue}
           />
-          <Cart $isEmptyValue={quantity == 0}>
+          <Cart $isEmptyValue={isEmpty} onClick={handleClick}>
             <ShoppingCart size={22} weight="fill" />
           </Cart>
         </ContainerCart>

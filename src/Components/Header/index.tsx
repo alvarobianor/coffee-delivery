@@ -3,11 +3,17 @@ import styled from 'styled-components';
 
 import { CartButton } from './CartButton';
 import { Location } from './Location';
+import { useNavigate } from 'react-router-dom';
 
 export function Header() {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate('/');
+  }
+
   return (
     <HeaderContainer>
-      <img src={Logo} />
+      <img src={Logo} onClick={handleClick} />
       <InfosContainer>
         <Location text="Choro, CE" />
         <CartButton />
@@ -27,6 +33,7 @@ const HeaderContainer = styled.header`
   img {
     height: 40px;
     width: 84.95px;
+    cursor: pointer;
   }
 `;
 

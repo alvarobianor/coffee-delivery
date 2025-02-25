@@ -9,6 +9,7 @@ export function CartButton() {
   const navigate = useNavigate();
 
   function handleClick() {
+    if (quantity === 0) return;
     navigate('/checkout');
   }
   return (
