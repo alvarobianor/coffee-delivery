@@ -1,25 +1,65 @@
 import { FinishOrder } from '@components/FinishOrder';
 import { Payment } from '@components/Payment';
 import { ResumeOrder } from '@components/ResumeOrder';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useOrderContext } from '@hooks/useOrder';
+import { FormProvider, useForm } from 'react-hook-form';
+import { Address } from 'src/reducer/orderReducer';
 import { styled } from 'styled-components';
+import * as zod from 'zod';
+
+const AddressValidationSchema = zod.object({
+  street: zod.string().nonempty(),
+  number: zod.string().nonempty(),
+  neighborhood: zod.string().nonempty(),
+  complement: zod.string().optional(),
+  city: zod.string().nonempty(),
+  state: zod.string().nonempty(),
+  code: zod.string().nonempty(),
+});
 
 export function Checkout() {
+  const useFormMethods = useForm<Address>({
+    resolver: zodResolver(AddressValidationSchema),
+    defaultValues: {
+      code: '',
+      street: '',
+      number: '',
+      neighborhood: '',
+      complement: '',
+      city: '',
+      state: '',
+    },
+  });
+
+  const { createAddress } = useOrderContext();
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useFormMethods;
+
+  console.log('erros', errors);
   return (
-    <Container>
-      <Section>
-        <h2>Complete seu pedido</h2>
-        <FinishOrder />
-        <Payment />
-      </Section>
-      <Section>
-        <h2>Cafés Selecionados</h2>
-        <ResumeOrder />
-      </Section>
-    </Container>
+    <main>
+      <ContainerForm onSubmit={handleSubmit((props) => createAddress(props))}>
+        <Section>
+          <h2>Complete seu pedido</h2>
+          <FormProvider {...useFormMethods}>
+            <FinishOrder />
+            <Payment />
+          </FormProvider>
+        </Section>
+        <Section>
+          <h2>Cafés Selecionados</h2>
+          <ResumeOrder />
+        </Section>
+      </ContainerForm>
+    </main>
   );
 }
 
-const Container = styled.main`
+const ContainerForm = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;

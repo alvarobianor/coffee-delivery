@@ -5,9 +5,11 @@ import {
   ContainerTitle,
   Icon,
 } from '@styles/GlobalStyles';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 export function FinishOrder() {
+  const { register } = useFormContext();
   return (
     <ContainerContent>
       <ContainerHeader>
@@ -20,7 +22,11 @@ export function FinishOrder() {
         </ContainerTitle>
       </ContainerHeader>
       <Form>
-        <Input type="text" placeholder="CEP" />
+        <Input
+          type="text"
+          placeholder="CEP"
+          {...register('code', { required: true })}
+        />
         <Input type="text" placeholder="Rua" />
         <Row>
           <Input type="text" placeholder="Número" />
