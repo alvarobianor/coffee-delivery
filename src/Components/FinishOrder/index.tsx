@@ -6,7 +6,7 @@ import {
   Icon,
 } from '@styles/GlobalStyles';
 import { useFormContext } from 'react-hook-form';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export function FinishOrder() {
   const { register } = useFormContext();
@@ -25,19 +25,52 @@ export function FinishOrder() {
         <Input
           type="text"
           placeholder="CEP"
+          required
           {...register('code', { required: true })}
         />
-        <Input type="text" placeholder="Rua" />
+        <Input
+          type="text"
+          placeholder="Rua"
+          required
+          {...register('street', { required: true })}
+        />
         <Row>
-          <Input type="text" placeholder="Número" />
+          <Input
+            type="text"
+            placeholder="Número"
+            required
+            {...register('number', { required: true })}
+          />
           <InputWrapper>
-            <StyledInput $flexGrow={2} type="text" placeholder="Complemento" />
+            <StyledInput
+              $flexGrow={2}
+              type="text"
+              placeholder="Complemento"
+              {...register('complement', { required: true })}
+            />
           </InputWrapper>
         </Row>
         <Row>
-          <Input type="text" placeholder="Bairro" />
-          <Input $flexGrow={2} type="text" placeholder="Cidade" />
-          <Input $widthRem={5} type="text" placeholder="UF" />
+          <Input
+            type="text"
+            placeholder="Bairro"
+            required
+            {...register('neighborhood', { required: true })}
+          />
+          <Input
+            $flexGrow={2}
+            type="text"
+            placeholder="Cidade"
+            required
+            {...register('city', { required: true })}
+          />
+          <Input
+            $widthRem={5}
+            type="text"
+            placeholder="UF"
+            required
+            {...register('state', { required: true })}
+          />
         </Row>
       </Form>
     </ContainerContent>
@@ -75,6 +108,7 @@ const Form = styled.form`
 interface InputProps {
   $flexGrow?: number;
   $widthRem?: number;
+  $hasError?: boolean;
 }
 
 const Input = styled.input<InputProps>`
@@ -83,8 +117,13 @@ const Input = styled.input<InputProps>`
   padding: 0.75rem;
   color: ${({ theme }) => theme.colors['base-label']};
   background-color: ${({ theme }) => theme.colors['base-input']};
-  border: 0px;
+  border: 1px solid transparent;
   border-radius: 6px;
+  ${({ $hasError }) =>
+    $hasError &&
+    css`
+      border-color: ${({ theme }) => theme.colors['base-error']};
+    `}
 `;
 
 const InputWrapper = styled.div`
