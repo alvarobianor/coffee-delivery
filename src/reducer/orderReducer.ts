@@ -13,6 +13,11 @@ export interface Address {
   state: string;
 }
 
+export interface Payment {
+  paymentMethod: string;
+  paymentMethodId: number;
+}
+
 export interface OrderState {
   order: Order[];
   address: Address;
