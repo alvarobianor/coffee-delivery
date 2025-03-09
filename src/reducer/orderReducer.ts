@@ -1,4 +1,4 @@
-import { Order } from 'src/context/OrderContext';
+import { Item } from 'src/context/OrderContext';
 import { ActionType } from './actions';
 import { produce } from 'immer';
 import { infos } from 'src/data';
@@ -19,7 +19,7 @@ export interface Payment {
 }
 
 export interface OrderState {
-  order: Order[];
+  itens: Item[];
   address: Address;
   total: number;
 }
@@ -34,11 +34,12 @@ export interface Actions {
   };
 }
 
+// TODO create the option to add a payment method
 export const orderReducer = (state: OrderState, action: Actions) => {
   switch (action.type) {
     case ActionType.ADD_ITEM:
       return produce(state, (draftState) => {
-        const order = draftState.order.find(
+        const order = draftState.itens.find(
           (item) => item.id === action.payload.addItem?.id,
         );
         if (order) {
@@ -52,9 +53,9 @@ export const orderReducer = (state: OrderState, action: Actions) => {
               `Coffee with id ${action.payload.addItem?.id} not found`,
             );
           }
-          draftState.order.push({ ...coffee, quantity: 1 });
+          draftState.itens.push({ ...coffee, quantity: 1 });
         }
-        draftState.total = draftState.order.reduce(
+        draftState.total = draftState.itens.reduce(
           (acc, item) => acc + item.price * item.quantity,
           0,
         );
@@ -62,18 +63,18 @@ export const orderReducer = (state: OrderState, action: Actions) => {
     // return { ...state, orders: [...state.orders, ...action.payload.orders] };
     case ActionType.REMOVE_ITEM:
       return produce(state, (draftState) => {
-        const order = draftState.order.find(
+        const order = draftState.itens.find(
           (item) => item.id === action.payload.addItem?.id,
         );
         if (order) {
           order.quantity -= 1;
           if (order.quantity === 0) {
-            draftState.order = draftState.order.filter(
+            draftState.itens = draftState.itens.filter(
               (item) => item.id !== action.payload.addItem?.id,
             );
           }
         }
-        draftState.total = draftState.order.reduce(
+        draftState.total = draftState.itens.reduce(
           (acc, item) => acc + item.price * item.quantity,
           0,
         );
@@ -86,10 +87,10 @@ export const orderReducer = (state: OrderState, action: Actions) => {
     // };
     case ActionType.CLEAR_ITEM:
       return produce(state, (draftState) => {
-        draftState.order = draftState.order.filter(
+        draftState.itens = draftState.itens.filter(
           (item) => item.id !== action.payload.addItem?.id,
         );
-        draftState.total = draftState.order.reduce(
+        draftState.total = draftState.itens.reduce(
           (acc, item) => acc + item.price * item.quantity,
           0,
         );
@@ -100,7 +101,7 @@ export const orderReducer = (state: OrderState, action: Actions) => {
         draftState.address = action.payload.address as Address;
       });
     case ActionType.CLEAR_ORDERS:
-      return { order: [], address: {} as Address, total: 0 };
+      return { itens: [], address: {} as Address, total: 0 };
     default:
       return state;
   }

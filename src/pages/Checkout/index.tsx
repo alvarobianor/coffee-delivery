@@ -42,7 +42,12 @@ export function Checkout() {
   console.log('erros', errors);
   return (
     <main>
-      <ContainerForm onSubmit={handleSubmit((props) => createAddress(props))}>
+      <ContainerForm
+        onSubmit={handleSubmit((props) => {
+          console.log('props', props);
+          createAddress(props);
+        })}
+      >
         <Section>
           <h2>Complete seu pedido</h2>
           <FormProvider {...useFormMethods}>

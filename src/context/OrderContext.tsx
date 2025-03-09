@@ -9,12 +9,12 @@ import {
 } from 'src/reducer/actions';
 import { Address, orderReducer } from 'src/reducer/orderReducer';
 
-export interface Order extends Coffe {
+export interface Item extends Coffe {
   quantity: number;
 }
 
 interface OrderContextType {
-  order: Order[];
+  itens: Item[];
   address: unknown;
   total: number;
   addOrIncrease: (id: number) => void;
@@ -29,11 +29,13 @@ export const OrderContext = createContext<OrderContextType | undefined>(
 );
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
-  const [{ order, address, total }, dispatch] = useReducer(orderReducer, {
-    order: [],
+  const [state, dispatch] = useReducer(orderReducer, {
+    itens: [],
     address: {} as Address,
     total: 0,
   });
+
+  const { itens, address, total } = state;
 
   function addOrIncrease(id: number) {
     dispatch(addItem(id));
@@ -58,7 +60,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
   return (
     <OrderContext.Provider
       value={{
-        order,
+        itens,
         address,
         total,
         addOrIncrease,
