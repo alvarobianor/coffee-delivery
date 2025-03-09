@@ -15,10 +15,10 @@ type Props = {
 export function CoffeeCard({ info }: Props) {
   const { id, description, imgName, name, price, tags } = info;
 
-  const { addOrIncrease, removeOrDecrease, order } = useOrderContext();
+  const { addOrIncrease, removeOrDecrease, itens } = useOrderContext();
   const navigate = useNavigate();
 
-  const orderItem = order.find((item) => item.id === id);
+  const orderItem = itens.find((item) => item.id === id);
   const quantity = orderItem?.quantity || 0;
   const isEmpty = quantity == 0;
 

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export function CartButton() {
-  const { order } = useOrderContext();
-  const quantity = order.reduce((acc, item) => acc + item.quantity, 0);
+  const { itens } = useOrderContext();
+  const quantity = itens.reduce((acc, item) => acc + item.quantity, 0);
   const navigate = useNavigate();
 
   function handleClick() {
