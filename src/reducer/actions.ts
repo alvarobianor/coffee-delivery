@@ -1,4 +1,4 @@
-import { Address } from './orderReducer';
+import { Address, Payment } from './orderReducer';
 
 export enum ActionType {
   ADD_ITEM = 'ADD_ITEM',
@@ -6,6 +6,7 @@ export enum ActionType {
   CLEAR_ORDERS = 'CLEAR_ORDERS',
   CLEAR_ITEM = 'CLEAR_ITEM',
   ADD_ADDRESS = 'ADD_ADDRESS',
+  ADD_PAYMENT = 'ADD_PAYMENT',
 }
 
 export function addItem(id: number) {
@@ -53,6 +54,15 @@ export function addAddress(address: Address) {
     type: ActionType.ADD_ADDRESS,
     payload: {
       address: address,
+    },
+  };
+}
+
+export function addPayment(payment: Payment) {
+  return {
+    type: ActionType.ADD_PAYMENT,
+    payload: {
+      payment: payment,
     },
   };
 }

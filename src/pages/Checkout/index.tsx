@@ -4,7 +4,7 @@ import { ResumeOrder } from '@components/ResumeOrder';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useOrderContext } from '@hooks/useOrder';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Address } from 'src/reducer/orderReducer';
+import { OrderInformations } from 'src/reducer/orderReducer';
 import { styled } from 'styled-components';
 import * as zod from 'zod';
 
@@ -16,10 +16,12 @@ const AddressValidationSchema = zod.object({
   city: zod.string().nonempty(),
   state: zod.string().nonempty(),
   code: zod.string().nonempty(),
+  paymentMethod: zod.string().nonempty(),
+  paymentMethodId: zod.number(),
 });
 
 export function Checkout() {
-  const useFormMethods = useForm<Address>({
+  const useFormMethods = useForm<OrderInformations>({
     resolver: zodResolver(AddressValidationSchema),
     defaultValues: {
       code: '',
@@ -29,10 +31,12 @@ export function Checkout() {
       complement: '',
       city: '',
       state: '',
+      paymentMethod: '',
+      paymentMethodId: 0,
     },
   });
 
-  const { createAddress } = useOrderContext();
+  const { updateAddress, updatePayment } = useOrderContext();
 
   const {
     handleSubmit,
@@ -45,7 +49,8 @@ export function Checkout() {
       <ContainerForm
         onSubmit={handleSubmit((props) => {
           console.log('props', props);
-          createAddress(props);
+          updateAddress(props);
+          updatePayment(props);
         })}
       >
         <Section>

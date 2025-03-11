@@ -1,14 +1,16 @@
-import { CurrencyDollar, CreditCard, Money, Bank } from '@phosphor-icons/react';
+import { Bank, CreditCard, CurrencyDollar, Money } from '@phosphor-icons/react';
 import {
-  ContainerHeader,
   ContainerContent,
+  ContainerHeader,
   ContainerTitle,
   Icon,
 } from '@styles/GlobalStyles';
 import { useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 import { css, styled } from 'styled-components';
 
 export function Payment() {
+  const { control, setValue } = useFormContext();
   const paymentMethods = [
     { icon: <CreditCard size={22} />, name: 'Cartão de Crédito' },
     { icon: <Money size={22} />, name: 'Dinheiro' },
@@ -32,20 +34,31 @@ export function Payment() {
           <p>Informe o endereço onde deseja receber seu pedido</p>
         </ContainerTitle>
       </ContainerHeader>
-      <RadioGroup>
-        {paymentMethods.map((paymentMethod, index) => (
-          <RadioButton
-            key={index}
-            $isSelected={selectedPaymentMethod === index}
-            name={paymentMethod.name}
-            value={paymentMethod.name}
-            onClick={() => handleSelectPaymentMethod(index)}
-          >
-            <Icon $color="brand-purple">{paymentMethod.icon}</Icon>
-            {paymentMethod.name}
-          </RadioButton>
-        ))}
-      </RadioGroup>
+      <Controller
+        name="paymentMethod"
+        control={control}
+        defaultValue={''}
+        render={({ field }) => (
+          <RadioGroup>
+            {paymentMethods.map((paymentMethod, index) => (
+              <RadioButton
+                key={index}
+                $isSelected={selectedPaymentMethod === index}
+                name="paymentMethod"
+                value={paymentMethod.name}
+                onClick={() => {
+                  handleSelectPaymentMethod(index);
+                  field.onChange(paymentMethod.name);
+                  setValue('paymentMethodId', index);
+                }}
+              >
+                <Icon $color="brand-purple">{paymentMethod.icon}</Icon>
+                {paymentMethod.name}
+              </RadioButton>
+            ))}
+          </RadioGroup>
+        )}
+      />
     </ContainerContent>
   );
 }

@@ -18,15 +18,19 @@ export interface Payment {
   paymentMethodId: number;
 }
 
+export type OrderInformations = Address & Payment;
+
 export interface OrderState {
   itens: Item[];
   address: Address;
+  payment: Payment;
   total: number;
 }
 
 export interface Actions {
   type: ActionType;
   payload: {
+    payment?: Payment;
     address?: Address;
     addItem?: {
       id: number;
@@ -100,8 +104,17 @@ export const orderReducer = (state: OrderState, action: Actions) => {
       return produce(state, (draftState) => {
         draftState.address = action.payload.address as Address;
       });
+    case ActionType.ADD_PAYMENT:
+      return produce(state, (draftState) => {
+        draftState.payment = action.payload.payment as Payment;
+      });
     case ActionType.CLEAR_ORDERS:
-      return { itens: [], address: {} as Address, total: 0 };
+      return {
+        itens: [],
+        address: {} as Address,
+        payment: {} as Payment,
+        total: 0,
+      };
     default:
       return state;
   }
