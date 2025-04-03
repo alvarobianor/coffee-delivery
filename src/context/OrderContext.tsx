@@ -17,6 +17,7 @@ export interface Item extends Coffe {
 interface OrderContextType {
   itens: Item[];
   address: unknown;
+  payment: unknown;
   total: number;
   addOrIncrease: (id: number) => void;
   removeOrDecrease: (id: number) => void;
@@ -38,7 +39,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     total: 0,
   });
 
-  const { itens, address, total } = state;
+  const { itens, address, payment, total } = state;
 
   function addOrIncrease(id: number) {
     dispatch(addItem(id));
@@ -69,6 +70,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       value={{
         itens,
         address,
+        payment,
         total,
         addOrIncrease,
         removeOrDecrease,
