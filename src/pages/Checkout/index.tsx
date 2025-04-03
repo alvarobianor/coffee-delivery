@@ -38,17 +38,13 @@ export function Checkout() {
 
   const { updateAddress, updatePayment } = useOrderContext();
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useFormMethods;
+  const { handleSubmit } = useFormMethods;
 
-  console.log('erros', errors);
   return (
     <main>
       <ContainerForm
         onSubmit={handleSubmit((props) => {
-          console.log('props', props);
+          console.log('props ->', props);
           updateAddress(props);
           updatePayment(props);
         })}

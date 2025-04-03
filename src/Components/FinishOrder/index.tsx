@@ -1,15 +1,20 @@
 import { MapPinLine } from '@phosphor-icons/react';
 import {
-  ContainerHeader,
   ContainerContent,
+  ContainerHeader,
   ContainerTitle,
   Icon,
 } from '@styles/GlobalStyles';
 import { useFormContext } from 'react-hook-form';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export function FinishOrder() {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  console.log('errors', errors);
   return (
     <ContainerContent>
       <ContainerHeader>
@@ -26,12 +31,14 @@ export function FinishOrder() {
           type="text"
           placeholder="CEP"
           required
+          $hasError={!!errors.code}
           {...register('code', { required: true })}
         />
         <Input
           type="text"
           placeholder="Rua"
           required
+          $hasError={!!errors.street}
           {...register('street', { required: true })}
         />
         <Row>
@@ -39,6 +46,7 @@ export function FinishOrder() {
             type="text"
             placeholder="Número"
             required
+            $hasError={!!errors.number}
             {...register('number', { required: true })}
           />
           <InputWrapper>
@@ -46,6 +54,7 @@ export function FinishOrder() {
               $flexGrow={2}
               type="text"
               placeholder="Complemento"
+              $hasError={!!errors.complement}
               {...register('complement', { required: true })}
             />
           </InputWrapper>
@@ -55,6 +64,7 @@ export function FinishOrder() {
             type="text"
             placeholder="Bairro"
             required
+            $hasError={!!errors.neighborhood}
             {...register('neighborhood', { required: true })}
           />
           <Input
@@ -62,6 +72,7 @@ export function FinishOrder() {
             type="text"
             placeholder="Cidade"
             required
+            $hasError={!!errors.city}
             {...register('city', { required: true })}
           />
           <Input
@@ -69,6 +80,7 @@ export function FinishOrder() {
             type="text"
             placeholder="UF"
             required
+            $hasError={!!errors.state}
             {...register('state', { required: true })}
           />
         </Row>
@@ -117,13 +129,16 @@ const Input = styled.input<InputProps>`
   padding: 0.75rem;
   color: ${({ theme }) => theme.colors['base-label']};
   background-color: ${({ theme }) => theme.colors['base-input']};
-  border: 1px solid transparent;
+  border: 1px solid
+    ${({ theme, $hasError }) =>
+      $hasError ? theme.colors['base-error'] : 'transparent'};
   border-radius: 6px;
-  ${({ $hasError }) =>
-    $hasError &&
-    css`
-      border-color: ${({ theme }) => theme.colors['base-error']};
-    `}
+
+  /* &:focus {
+    border-color: ${({ theme, $hasError }) =>
+    $hasError ? theme.colors['base-error'] : theme.colors['brand-yellow-dark']};
+    outline: none;
+  } */
 `;
 
 const InputWrapper = styled.div`
