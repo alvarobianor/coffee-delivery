@@ -1,24 +1,30 @@
 import { QuantityInput } from '@components/CoffeCard/QuantityInput';
 import { Trash } from '@phosphor-icons/react';
+import { Item } from 'src/context/OrderContext';
 import { styled } from 'styled-components';
 
-export function CoffeeResumeCard({ imgName }: { imgName: string }) {
+export function CoffeeResumeCard({ ...item }: Item) {
   return (
     <Container>
-      <img src={imgName} />
+      <img src={item.imgName} />
       <Content>
-        <span>Nome</span>
+        <span>{item.name}</span>
         <ButttonsContainer>
           {/* TODO implement a secondary apperancy to hide the background of buttons */}
           <Wrapper>
-            <QuantityInput quantity={0} onChangeValue={() => {}} />
+            <QuantityInput quantity={item.quantity} onChangeValue={() => {}} />
           </Wrapper>
           <RemoveButton>
             <Trash size={22} /> Remover
           </RemoveButton>
         </ButttonsContainer>
       </Content>
-      <Price>R$ 5,00</Price>
+      <Price>
+        {Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(item.price)}
+      </Price>
     </Container>
   );
 }

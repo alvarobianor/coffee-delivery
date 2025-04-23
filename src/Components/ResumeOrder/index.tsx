@@ -1,19 +1,35 @@
 import { CoffeeResumeCard } from '@components/CoffeeResumeCard';
 import { Divider } from '@components/Divider';
+import { useOrderContext } from '@hooks/useOrder';
 import { css, styled } from 'styled-components';
 
 export function ResumeOrder() {
+  const { itens } = useOrderContext();
+
+  const totalItens = itens.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+
   return (
     <Container>
       <ResumeContainer>
-        <CoffeeResumeCard imgName={'mocaccino-img.png'} />
-        <Divider />
-        <CoffeeResumeCard imgName={'mocaccino-img.png'} />
-        <Divider />
+        <>
+          {itens.map((item) => (
+            <>
+              <CoffeeResumeCard {...item} />
+              <Divider />
+            </>
+          ))}
+        </>
 
         <Row>
           <p>Total de itens</p>
-          <p>R$ 29,90</p>
+          <p>
+            {Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(totalItens)}
+          </p>
         </Row>
         <Row>
           <p>Entrega</p>
@@ -21,7 +37,12 @@ export function ResumeOrder() {
         </Row>
         <Row $isHighlight>
           <p>Total</p>
-          <p>R$ 50,00</p>
+          <p>
+            {Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(totalItens + 2)}
+          </p>
         </Row>
       </ResumeContainer>
       <FinishOrderButton type="submit">Finalizar pedido</FinishOrderButton>
